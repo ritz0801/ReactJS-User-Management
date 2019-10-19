@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 
 export default class ModalUser extends Component {
     constructor(props) {
@@ -40,11 +40,11 @@ export default class ModalUser extends Component {
             email: this.state.email,
             soDT: this.state.soDT
         }
-        this.props.getUser1(user);
+        this.props.getUser(user);
     }
 
     render() {
-        
+
         return (
             <div>
                 <Button color="danger" onClick={this.toggle}>Thêm người dùng</Button>
@@ -70,7 +70,7 @@ export default class ModalUser extends Component {
                             <Label for="email">Email người dùng: </Label>
                             <Input type="email" name="email" value={this.state.email} id="email" placeholder="Nhập email người dùng" onChange={this.onChange} />
                         </FormGroup>
-                        
+
                         <FormGroup>
                             <Label for="soDT">Số điện thoại người dùng: </Label>
                             <Input type="number" name="soDT" value={this.state.soDT} id="soDT" placeholder="Nhập số điện thoại người dùng" onChange={this.onChange} />

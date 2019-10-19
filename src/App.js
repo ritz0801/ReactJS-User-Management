@@ -13,12 +13,11 @@ class App extends React.Component {
   }
 
   getUser = (user) => {
-    
+
     const mangMoi = [...this.state.mangNguoiDung, user];
     this.setState({
       mangNguoiDung: mangMoi
     })
-    console.log(mangMoi);
   }
 
   render() {
@@ -27,9 +26,9 @@ class App extends React.Component {
         <Typography className="App__heading" variant="h3" component="h2" gutterBottom>
           Quản Lý Người Dùng
         </Typography>
-        <Modal getUser1={this.getUser}/>
+        <Modal getUser={this.getUser} />
         <Search />
-        <UserList />
+        <UserList userList={this.state.mangNguoiDung} />
       </div>
     );
   }
