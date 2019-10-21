@@ -12,11 +12,35 @@ class App extends React.Component {
     }
   }
 
-  getUser = (user) => {
+  componentDidMount = () => {
+    this.getLocalStorage();
+  }
 
+  setLocalStorage = (arr) => {
+    localStorage.setItem("userList", JSON.stringify(arr));
+  }
+
+  getLocalStorage = () => {
+    const data = localStorage.getItem("userList");
+    const dataParse = JSON.parse(data);
+    if (dataParse) {
+      this.setState({
+        mangNguoiDung: dataParse
+      })
+    }
+    else {
+      this.setState({
+        mangNguoiDung: []
+      })
+    }
+  }
+
+  getUser = (user) => {
     const mangMoi = [...this.state.mangNguoiDung, user];
     this.setState({
       mangNguoiDung: mangMoi
+    }, () => {
+      this.setLocalStorage(this.state.mangNguoiDung);
     })
   }
 
@@ -26,6 +50,8 @@ class App extends React.Component {
     })
     this.setState({
       mangNguoiDung: userListAfterDelete
+    }, () => {
+      this.setLocalStorage(this.state.mangNguoiDung);
     })
   }
 
@@ -37,7 +63,7 @@ class App extends React.Component {
         </Typography>
         <Modal getUser={this.getUser} />
         <Search />
-        <UserList userList={this.state.mangNguoiDung} onDeleteUser={this.onDeleteUSer}/>
+        <UserList userList={this.state.mangNguoiDung} onDeleteUser={this.onDeleteUSer} />
       </div>
     );
   }
