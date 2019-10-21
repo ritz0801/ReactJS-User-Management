@@ -20,6 +20,15 @@ class App extends React.Component {
     })
   }
 
+  onDeleteUSer = (userID) => {
+    const userListAfterDelete = this.state.mangNguoiDung.filter((user) => {
+      return user.maND !== userID;
+    })
+    this.setState({
+      mangNguoiDung: userListAfterDelete
+    })
+  }
+
   render() {
     return (
       <div className="App container">
@@ -28,7 +37,7 @@ class App extends React.Component {
         </Typography>
         <Modal getUser={this.getUser} />
         <Search />
-        <UserList userList={this.state.mangNguoiDung} />
+        <UserList userList={this.state.mangNguoiDung} onDeleteUser={this.onDeleteUSer}/>
       </div>
     );
   }

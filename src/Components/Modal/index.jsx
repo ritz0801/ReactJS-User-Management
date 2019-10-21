@@ -41,6 +41,12 @@ export default class ModalUser extends Component {
             soDT: this.state.soDT
         }
         this.props.getUser(user);
+        this.setState({
+            maND: '',
+            hoTen: '',
+            email: '',
+            soDT: ''
+        })
     }
 
     render() {
