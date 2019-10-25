@@ -8,7 +8,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mangNguoiDung: []
+      mangNguoiDung: [],
+      searchList: [],
+      isSearch: false
     }
   }
 
@@ -55,6 +57,24 @@ class App extends React.Component {
     })
   }
 
+  onSearchUser = (keyWord) => {
+    const searchList = this.state.mangNguoiDung.filter((user) => {
+      return user.hoTen.indexOf(keyWord) !== -1;
+    })
+    if (keyWord.length !== 0) {
+      this.setState({
+        searchList: searchList,
+        isSearch: true
+      })
+    }
+    else {
+      this.setState({
+        searchList: [],
+        isSearch: false
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App container">
@@ -62,8 +82,10 @@ class App extends React.Component {
           Quản Lý Người Dùng
         </Typography>
         <Modal getUser={this.getUser} />
-        <Search />
-        <UserList userList={this.state.mangNguoiDung} onDeleteUser={this.onDeleteUSer} />
+        <Search onSearchUser={this.onSearchUser} />
+        {
+          this.state.isSearch ? (this.state.searchList.length !== 0 ? <UserList userList={this.state.searchList} onDeleteUser={this.onDeleteUSer} /> : "Không tìm thấy người dùng cần tìm kiếm") : <UserList userList={this.state.mangNguoiDung} onDeleteUser={this.onDeleteUSer} />
+        }
       </div>
     );
   }
