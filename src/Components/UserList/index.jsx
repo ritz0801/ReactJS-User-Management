@@ -4,9 +4,10 @@ import { Table } from 'reactstrap';
 
 export default class UserList extends Component {
     render() {
-        let userItem = this.props.userList.map((user) => {
+        const { userList, onDeleteUser } = this.props;
+        let userItem = userList.map((user) => {
             return <UserItem user={user} key={user.maND} onDeleteUser={() => {
-                this.props.onDeleteUser(user.maND);
+                onDeleteUser(user.maND);
             }}/>
         })
         return (

@@ -24,7 +24,7 @@ export default class Search extends Component {
     render() {
         return (
             <InputGroup className="my-3">
-                <Input type="text" name="keyWord" value={this.state.keyWord} id="keyWord" placeholder="username" onChange={this.onChange}/>
+                <Input type="text" name="keyWord" value={this.state.keyWord} id="keyWord" placeholder="Nhập tên cần tìm..." onChange={this.onChange}/>
                 <InputGroupAddon addonType="append">
                     <InputGroupText>Search</InputGroupText>
                 </InputGroupAddon>
